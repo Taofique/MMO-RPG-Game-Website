@@ -1,6 +1,6 @@
 import type { Game } from "../types/TGame";
 import Button from "./Button";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 type Props = {
   game: Game;
@@ -9,8 +9,8 @@ type Props = {
 
 function GameCard({ game, onAddToFavorites }: Props) {
   return (
-    <div className="border rounded-2xl p-4 shadow hover:shadow-lg transition bg-white flex flex-col items-center">
-      <Link to={`/game/${game.id}`} className="w-full text-center">
+    <div className=" w-full border rounded-2xl p-6 shadow hover:shadow-lg transition bg-white flex flex-col items-center">
+      <Link to={`/game/${game.id}`} className="w-80 text-center">
         <img
           src={game.thumbnail}
           alt={game.title}
