@@ -17,7 +17,7 @@ export function FavoriteCard({ favorite, onDelete }: Props) {
 
         <Button
           label="Remove"
-          variant="seconday"
+          variant="secondary"
           onClick={() => onDelete(favorite.id)}
         />
       </div>
