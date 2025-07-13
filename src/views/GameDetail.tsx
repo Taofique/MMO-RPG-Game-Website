@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import type { GameDetail } from "../types/TGame";
 import { fetchGameById } from "../services/gameService";
 
-function GameDetail() {
+function GameDetails() {
   const { id } = useParams();
   const [game, setGame] = useState<GameDetail | null>(null);
   const [loading, setLoading] = useState(true);
@@ -107,4 +107,4 @@ function GameDetail() {
   );
 }
 
-export default GameDetail;
+export default GameDetails;
