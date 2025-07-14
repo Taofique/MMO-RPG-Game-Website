@@ -2,15 +2,18 @@ import { NavLink } from "react-router-dom";
 
 function Navbar() {
   const linkStyle =
-    "px-4 py-2 rounded hover:bg-gray-200 transition text-lg font-medium";
-  const activeStyle = "bg-gray-800 text-white";
+    "px-5 py-3 rounded-md transition-colors duration-300 text-lg font-semibold";
+  const activeStyle =
+    "bg-gradient-to-r from-purple-600 to-blue-500 text-white shadow-lg";
 
   return (
-    <nav className="flex justify-center gap-6 bg-white p-4 shadow">
+    <nav className="sticky top-0 z-50 h-20 bg-gray-900 bg-opacity-95 backdrop-blur-sm shadow-lg flex items-center justify-center gap-8 px-6 border-b border-gray-500">
       <NavLink
         to="/"
         className={({ isActive }) =>
-          `${linkStyle} ${isActive ? activeStyle : "text-gray-700"}`
+          `${linkStyle} ${
+            isActive ? activeStyle : "text-gray-300 hover:text-white"
+          }`
         }
       >
         Browse
@@ -18,7 +21,9 @@ function Navbar() {
       <NavLink
         to="/favorites"
         className={({ isActive }) =>
-          `${linkStyle} ${isActive ? activeStyle : "text-gray-700"}`
+          `${linkStyle} ${
+            isActive ? activeStyle : "text-gray-300 hover:text-white"
+          }`
         }
       >
         Favorites

@@ -1,5 +1,5 @@
 import type { Favorite } from "../types/TGame";
-import { FavoriteCard } from "./FavoriteCard";
+import FavoriteCard from "./FavoriteCard";
 
 type Props = {
   favoriteGames: Favorite[];
@@ -12,7 +12,7 @@ function FavoriteList({ favoriteGames, onDeleteFavorite }: Props) {
   }
 
   return (
-    <ul className="space-y-2 mt-2">
+    <ul className=" rounded-2xl p-4 space-y-2 mt-2">
       {favoriteGames.map((fav) => (
         <FavoriteCard
           key={fav.id}

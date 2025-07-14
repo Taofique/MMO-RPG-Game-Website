@@ -14,35 +14,46 @@ function Favorites() {
       setFavoriteGames(JSON.parse(stored) as Favorite[]);
     }
 
-    // Move this to a timeout to allow state to update before hydration
     setTimeout(() => {
       hasHydrated.current = true;
     }, 0);
   }, []);
 
-  // Save changes to localStorage after hydration
+  // Save to localStorage after hydration
   useEffect(() => {
     if (hasHydrated.current) {
       localStorage.setItem("favoriteGames", JSON.stringify(favoriteGames));
     }
   }, [favoriteGames]);
 
-  // Delete favorite handler
   const handleDeleteFavorite = (id: number) => {
     setFavoriteGames((prev) => removeFavoriteById(prev, id));
   };
 
   return (
-    <div className="p-4 space-y-6">
-      <h1 className="text-3xl font-bold text-center">My Favorite Games</h1>
-      {favoriteGames.length === 0 ? (
-        <p className="text-center text-gray-500">No favorites added yet.</p>
-      ) : (
-        <FavoriteList
-          favoriteGames={favoriteGames}
-          onDeleteFavorite={handleDeleteFavorite}
-        />
-      )}
+    <div className="min-h-screen px-4 py-8 bg-gray-900">
+      <div className="max-w-4xl mx-auto space-y-6">
+        <h1 className="text-4xl font-extrabold text-center text-white tracking-tight">
+          🎮 My Favorite Games
+        </h1>
+
+        {favoriteGames.length === 0 ? (
+          <div className="text-center p-6 rounded-lg bg-gray-800 border border-gray-700">
+            <p className="text-gray-400 text-lg">
+              No favorites added yet. Start exploring!
+            </p>
+          </div>
+        ) : (
+          <div className="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+            <ul className="space-y-6">
+              <FavoriteList
+                favoriteGames={favoriteGames}
+                onDeleteFavorite={handleDeleteFavorite}
+              />
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -54,6 +54,10 @@ function Home() {
   const handleAddFavorite = (game: Game) => {
     if (!hasHydrated.current) return;
     const newEntry = createFavorite(game);
+    const alradyExists = favoriteGames.find((fav) => fav.id === newEntry.id);
+    if (alradyExists) {
+      return alert(`Game already added to favorites!`);
+    }
     setFavoriteGames((prev) => [...prev, newEntry]);
   };
 
@@ -79,15 +83,19 @@ function Home() {
   );
 
   return (
-    <div className="p-4 space-y-8">
-      <h1 className="text-4xl font-bold text-center">MMO Game Browser</h1>
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 p-4 space-y-8">
+      <h1 className="text-5xl font-extrabold text-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent drop-shadow-lg mb-6">
+        MMO Game Browser
+      </h1>
 
       <input
         type="text"
         placeholder="Search games..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full md:w-1/2 mx-auto block px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 "
+        className="w-full md:w-1/2 mx-auto block px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white placeholder-gray-400 shadow-md
+    focus:outline-none focus:ring-2 focus:ring-white
+    hover:border-white transition-colors duration-300"
       />
 
       {/* Game Browser Section */}
@@ -96,12 +104,13 @@ function Home() {
           No games found. Try refreshing.
         </p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {filteredGames.slice(0, visibleCount).map((game) => (
             <GameCard
               key={game.id}
               game={game}
               onAddToFavorites={handleAddFavorite}
+              favoriteGames={favoriteGames}
             />
           ))}
         </div>
@@ -119,7 +128,9 @@ function Home() {
       )}
 
       {/* Favorite Games Section */}
-      <h2 className="text-4xl font-bold mt-4 text-center">Favorite Games</h2>
+      <h2 className="text-3xl font-semibold text-center text-purple-300 drop-shadow-md mt-12 mb-4 border-t border-gray-700 pt-6">
+        Favorite Games
+      </h2>
       <FavoriteList
         favoriteGames={favoriteGames}
         onDeleteFavorite={handleDeleteFavorite}
