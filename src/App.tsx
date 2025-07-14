@@ -3,6 +3,7 @@ import Home from "./views/Home";
 import Favorites from "./views/Favorites";
 import GameDetails from "./views/GameDetail";
 import Navbar from "./components/NavBar";
+import ScrollToTopButton from "./components/ScrollTopButton";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/game/:id" element={<GameDetails />} />
           </Routes>
+
+          <ScrollToTopButton />
         </main>
       </div>
     </>
